@@ -48,7 +48,7 @@ https://lwn.net/Articles/753601/
 USDT Java:
 http://blogs.microsoft.co.il/sasha/2016/12/23/usdtbpf-tracing-tools-java-python-ruby-node-mysql-postgresql/
 
-Binding java to libstapsdt
+Binding java to libstapsdt (the way to implement dynamic USDT probes from java)
 https://twitter.com/goldshtn/status/932251357251325953
 
 
@@ -67,3 +67,19 @@ eBPF disadvantages:
 - requires a fairly recent kernel
 - can't easily give as many insights as a language or application-specific userspace debugger
 - Because "normal eBPF" runs in the Linux kernel, a kernel-user context switch happens every time eBPF instruments a user process. This can be expensive for debugging performance critical userspace code (perhaps the userspace eBPF VM project can be used to avoid this switch cost?). This context switch is much cheaper than what a normal debugger incurs (or tools like strace), so it's usually negligible, but a tracer capable of fully running in userspace like LTTng may be preferable in this case.
+
+### Probe and tracepoints:
+A **probe** is when the kernel dynamically modifies your assembly program at runtime (like, it changes the instructions) in order to enable tracing. This is super powerful (and kind of scary!) because you can enable a probe on literally any instruction in the program you’re tracing. (though dtrace probes aren’t “probes” in this sense). Kprobes and uprobes are examples of this pattern.
+
+A **tracepoint** is something you compile into your program. When someone using your program wants to see when that tracepoint is hit and extract data, they can “enable” or “activate” the tracepoint to start using it. Generally a tracepoint in this sense doesn’t cause any extra overhead when it’s not activated, and is relatively low overhead when it is activated. USDT (“dtrace probes”), lttng-ust, and kernel tracepoints are all examples of this pattern.
+
+## USDT probes from application:
+https://github.com/goldshtn/libstapsdt-jni
+
+### Enable jdk DTrace probe:
+`bash configure --enable-dtrace`
+`make`
+`make install`
+
+Probes with [enabled DTrace](jdkWithDtraceProbes.md)
+Probes without [enabled DTrace](jdkWithoutDtraceProbes.md)
