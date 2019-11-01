@@ -78,8 +78,24 @@ Able to build flame graph by call stack.
 [LTTng-UST Analyses](http://archive.eclipse.org/tracecompass/doc/stable/org.eclipse.tracecompass.doc.user/LTTng-UST-Analyses.html)
 [some pdf](https://www.nxp.com/docs/en/application-note/AN5172.pdf)
 [conf pdf](https://www.eclipsecon.org/europe2014/sites/default/files/slides/TraceCompassEclipseConEurope2014_Oct07.pdf)
-Мне кажется, технические писатели из эклипса ненавидят людей.
 [java logging](http://archive.eclipse.org/tracecompass/doc/stable/org.eclipse.tracecompass.doc.user/Java-Logging.html)
+
+The following trace events need to be present in the trace:
+
+
+* lttng_ust_statedump:start
+* lttng_ust_statedump:end
+* lttng_ust_statedump:bin_info
+* lttng_ust_statedump:build_id
+
+Можно руками добавить отображение адресов в имена функций (но утверждается, что это должно делаться само) `Configure how addresses are mapped to function names` можно добавить путь или исполняемый файл или маппинг полученный из `nm`. Пока что ничего не помогает.
+
+`LD_PRELOAD=/path/to/liblttng-ust-dl.so ./main` -- add helper for tracing
+
+`liblttng-ust-cyg-profile-fast.so`, `liblttng-ust-cyg-profile.so` -- function entry and exit tracing
+`liblttng-ust-libc-wrapper.so` -- memory and posix thread tracing
+
+`liblttng-ust-dl.so` -- dymanic linker tracing
 
 ### Sources
 [LTTng documentation](https://lttng.org/docs/v2.10/)\
@@ -91,6 +107,7 @@ Able to build flame graph by call stack.
 [intro to kprobes](https://lwn.net/Articles/132196/)
 [lttng on work](https://www.onworks.net/programs/lttng-online)
 [about tracing](https://jvns.ca/blog/2017/07/05/linux-tracing-systems/)
+[buildig](http://cr.openjdk.java.net/~ihse/demo-new-build-readme/common/doc/building.html)
 ##### probes
 [kernel probes](https://www.kernel.org/doc/html/v4.17/trace/kprobetrace.html)
 [about probes usage](https://lttng.org/docs/v2.10/#doc-instrumenting-linux-kernel-tracing)
