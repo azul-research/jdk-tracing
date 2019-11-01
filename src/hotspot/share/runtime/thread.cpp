@@ -135,6 +135,8 @@
 #include "jfr/jfr.hpp"
 #endif
 
+#include<runtime/tracepoint.hpp>
+
 // Initialization after module runtime initialization
 void universe_post_module_init();  // must happen after call_initPhase2
 
@@ -3733,6 +3735,9 @@ void Threads::initialize_jsr292_core_classes(TRAPS) {
 
 jint Threads::create_vm(JavaVMInitArgs* args, bool* canTryAgain) {
   extern void JDK_Version_init();
+ 
+  // TODO: vm start event
+  tracepoint(vm_tracepoint_provider, vm_start, *canTryAgain);
 
   // Preinitialize version info.
   VM_Version::early_initialize();
