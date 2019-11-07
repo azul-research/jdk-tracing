@@ -2,7 +2,7 @@
 #define TRACEPOINT_PROVIDER vm_tracepoint_provider
 
 #undef TRACEPOINT_INCLUDE
-#define TRACEPOINT_INCLUDE "./tracepoint.h"
+#define TRACEPOINT_INCLUDE "./runtime/tracepoint.hpp"
 
 #if !defined(_STARTVM_TP_H) || defined(TRACEPOINT_HEADER_MULTI_READ)
 #define _STARTVM_TP_H

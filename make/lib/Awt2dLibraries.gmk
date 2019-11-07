@@ -310,7 +310,7 @@ ifeq ($(call isTargetOs, windows macosx), false)
     LIBAWT_XAWT_LIBS := $(LIBM) -lawt -lXext -lX11 -lXrender $(LIBDL) -lXtst -lXi -ljava -ljvm
 
     ifeq ($(call isTargetOs, linux), true)
-      LIBAWT_XAWT_LIBS += -lpthread
+      LIBAWT_XAWT_LIBS += -lpthread -llttng-ust
     endif
 
     ifeq ($(TOOLCHAIN_TYPE), gcc)
@@ -821,7 +821,7 @@ ifeq ($(ENABLE_HEADLESS_ONLY), false)
 
   ifeq ($(call isTargetOs, macosx), true)
     LIBSPLASHSCREEN_LIBS += \
-        $(LIBM) -lpthread -liconv -losxapp \
+        $(LIBM) -lpthread -llttng-ust -liconv -losxapp \
         -framework ApplicationServices \
         -framework Foundation \
         -framework Security \
@@ -830,7 +830,7 @@ ifeq ($(ENABLE_HEADLESS_ONLY), false)
   else ifeq ($(call isTargetOs, windows), true)
     LIBSPLASHSCREEN_LIBS += kernel32.lib user32.lib gdi32.lib delayimp.lib $(WIN_JAVA_LIB) jvm.lib
   else
-    LIBSPLASHSCREEN_LIBS += $(X_LIBS) -lX11 -lXext $(LIBM) -lpthread -ldl
+    LIBSPLASHSCREEN_LIBS += $(X_LIBS) -lX11 -lXext $(LIBM) -lpthread -llttng-ust -ldl
   endif
 
   LIBSPLASHSCREEN_HEADER_DIRS += \
