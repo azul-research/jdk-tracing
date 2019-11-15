@@ -4,10 +4,9 @@ g++ -std=c++11 -g  -finstrument-functions main.cpp -o main
 nm  --demangle main >mapping.txt
 lttng create ust-trace --output=./ust-trace
 
-# lttng add-context -u -t vpid -t vtid -t procname
-lttng add-context -u -t vtid
 lttng enable-channel -u --blocking-timeout=100 blocking-channel
 lttng enable-event -u -a --channel=blocking-channel
+lttng add-context -u -t vtid -t procname
 
 lttng start
 
@@ -17,6 +16,6 @@ lttng start
 LD_PRELOAD=liblttng-ust-cyg-profile.so LTTNG_UST_ALLOW_BLOCKING=1 ./main
 
 lttng stop
-# lttng view
+lttng view
 
 lttng destroy ust-trace
