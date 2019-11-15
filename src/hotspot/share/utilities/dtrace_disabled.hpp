@@ -22,6 +22,8 @@
  *
  */
 
+#include <utilities/lttngTracepoints.hpp>
+
 #ifndef SHARE_UTILITIES_DTRACE_DISABLED_HPP
 #define SHARE_UTILITIES_DTRACE_DISABLED_HPP
 
@@ -67,11 +69,11 @@
 #define HOTSPOT_MEM_POOL_GC_END_ENABLED() 0
 #define HOTSPOT_METHOD_COMPILE_BEGIN(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7)
 #define HOTSPOT_METHOD_COMPILE_BEGIN_ENABLED() 0
-#define HOTSPOT_METHOD_COMPILE_END(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8)
+#define HOTSPOT_METHOD_COMPILE_END(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8) tracepoint(hotspot_method_tp, method_compile_begin, arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8)
 #define HOTSPOT_METHOD_COMPILE_END_ENABLED() 0
-#define HOTSPOT_METHOD_ENTRY(arg0, arg1, arg2, arg3, arg4, arg5, arg6)
+#define HOTSPOT_METHOD_ENTRY(arg0, arg1, arg2, arg3, arg4, arg5, arg6) tracepoint(hotspot_method_tp, method_entry, arg0, arg1, arg2, arg3, arg4, arg5, arg6)
 #define HOTSPOT_METHOD_ENTRY_ENABLED() 0
-#define HOTSPOT_METHOD_RETURN(arg0, arg1, arg2, arg3, arg4, arg5, arg6)
+#define HOTSPOT_METHOD_RETURN(arg0, arg1, arg2, arg3, arg4, arg5, arg6) tracepoint(hotspot_method_tp, method_return, arg0, arg1, arg2, arg3, arg4, arg5, arg6)
 #define HOTSPOT_METHOD_RETURN_ENABLED() 0
 #define HOTSPOT_MONITOR_CONTENDED_ENTER(arg0, arg1, arg2, arg3)
 #define HOTSPOT_MONITOR_CONTENDED_ENTER_ENABLED() 0
