@@ -16,8 +16,8 @@ public class Main {
 
     public static void main(String[] args) {
         Main main = new Main();
-        System.out.println(main.bar(100));
-        System.out.println(main.foo(100));
+        System.out.println(main.bar(1000));
+        System.out.println(main.foo(1000));
 
     }
 }
