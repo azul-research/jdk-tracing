@@ -1,0 +1,105 @@
+Main2
+with -Xint
+
+nothing: 1068273836
+lttng: 1073871333
+lttng + xx: 1160591765
+lttng + saving: 4590863213
+lttng + blocking saving: 4350887860
+ustd: 1000577196
+ustd + xx:  20790286730
+ustd + lttng: 23710919473
+
+nothing: 1048362562
+lttng: 1071559934
+lttng + xx: 1068076490
+lttng + saving: 4378148051
+lttng + blocking saving: 4311756973
+ustd: 978969446
+ustd + xx:  20575059965
+ustd + lttng: 24022918644
+
+nothing: 1041897735
+lttng: 1010956682
+lttng + xx: 1172306508
+lttng + saving: 4709026357
+lttng + blocking saving: 4448465856
+ustd: 1057662675
+ustd + xx:  20645622542
+ustd + lttng: 24079960225
+
+nothing: 986977109
+lttng: 971402021
+lttng + xx: 1039070444
+lttng + saving: 4466389217
+lttng + blocking saving: 4238297276
+ustd: 1072205372
+ustd + xx:  20767990201
+ustd + lttng: 23835049473
+
+nothing: 982672471
+lttng: 1024456923
+lttng + xx: 1091984062
+lttng + saving: 4407570599
+lttng + blocking saving: 4173431519
+ustd: 987991439
+ustd + xx:  20666653295
+ustd + lttng: 24287685006
+
+nothing: 1071946068
+lttng: 1054124102
+lttng + xx: 1138015831
+lttng + saving: 4406963966
+lttng + blocking saving: 4356810090
+ustd: 996326146
+ustd + xx:  20805850093
+ustd + lttng: 24376897642
+
+nothing: 1038450844
+lttng: 1044394533
+lttng + xx: 1200834896
+lttng + saving: 4308157524
+lttng + blocking saving: 4168922822
+ustd: 1024671632
+ustd + xx:  20865295089
+ustd + lttng: 23915565506
+
+nothing: 957439152
+lttng: 1093179582
+lttng + xx: 1137051409
+lttng + saving: 4539299657
+lttng + blocking saving: 4111382767
+ustd: 1238592393
+ustd + xx:  21074945174
+ustd + lttng: 24634179545
+
+nothing: 1125801874
+lttng: 978948453
+lttng + xx: 1188325668
+lttng + saving: 4457925431
+lttng + blocking saving: 4320336642
+ustd: 1092204715
+ustd + xx:  20762366498
+ustd + lttng: 24080987526
+
+nothing: 1170918451
+lttng: 1011505222
+lttng + xx: 1150045518
+lttng + saving: 4768349105
+lttng + blocking saving: 4189967646
+ustd: 1090647094
+ustd + xx:  20744288973
+ustd + lttng: 23895383024
+
+----
+type                     avg        max deviation    avg deviation
+nothing            1049274010.2      121644440.8       47968837.6
+lttng              1033439878.5       62037857.5       33986018.3
+lttng + xx         1134630259.1       95559815.1       40951956.3
+lttng + saving     4503269312.0      265079793.0      118892216.8
+lttng + blocking   4267025945.1      181439910.9       90625539.1
+usdt               1053984810.8      184607582.2       56277639.0
+usdt + xx         20769835856.0      305109318.0       91406732.4
+usdt + lttng      24083954606.4      550224938.6      209379674.8
+
+

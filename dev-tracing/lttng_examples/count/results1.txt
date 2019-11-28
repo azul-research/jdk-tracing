@@ -1,0 +1,104 @@
+Main1 
+without -Xint
+
+nothing: 141149258
+lttng: 165394752
+lttng + xx: 83827636
+lttng + saving: 204955325
+lttng + blocking saving: 191455774
+ustd: 270859847
+ustd + xx:  136405985
+ustd + lttng: 332519992
+
+nothing: 34391517
+lttng: 40726746
+lttng + xx: 78072043
+lttng + saving: 153921527
+lttng + blocking saving: 100703208
+ustd: 34648693
+ustd + xx:  44447428
+ustd + lttng: 339558498
+
+nothing: 50908359
+lttng: 42833094
+lttng + xx: 56270785
+lttng + saving: 134283620
+lttng + blocking saving: 175973718
+ustd: 42454773
+ustd + xx:  86927393
+ustd + lttng: 317015810
+
+nothing: 45783947
+lttng: 43495050
+lttng + xx: 54230990
+lttng + saving: 142483083
+lttng + blocking saving: 129131408
+ustd: 50242695
+ustd + xx:  56163734
+ustd + lttng: 251877790
+
+nothing: 86370040
+lttng: 40967191
+lttng + xx: 47451678
+lttng + saving: 103000084
+lttng + blocking saving: 214485237
+ustd: 36369541
+ustd + xx:  51675790
+ustd + lttng: 276706282
+
+nothing: 39260357
+lttng: 37104199
+lttng + xx: 55987861
+lttng + saving: 113432603
+lttng + blocking saving: 155084498
+ustd: 37762651
+ustd + xx:  50223195
+ustd + lttng: 230598823
+
+nothing: 41188663
+lttng: 103332416
+lttng + xx: 100308612
+lttng + saving: 118010075
+lttng + blocking saving: 166881006
+ustd: 36590863
+ustd + xx:  45261991
+ustd + lttng: 355324105
+
+nothing: 49218565
+lttng: 43792193
+lttng + xx: 50276138
+lttng + saving: 310417541
+lttng + blocking saving: 270828526
+ustd: 52354182
+ustd + xx:  52514378
+ustd + lttng: 283639493
+
+nothing: 55465729
+lttng: 44318435
+lttng + xx: 54143690
+lttng + saving: 143747934
+lttng + blocking saving: 180913283
+ustd: 72211613
+ustd + xx:  73946967
+ustd + lttng: 242393616
+
+nothing: 43532419
+lttng: 42759861
+lttng + xx: 50006082
+lttng + saving: 130439018
+lttng + blocking saving: 212287600
+ustd: 48142959
+ustd + xx:  51692383
+ustd + lttng: 265467262
+
+----
+
+type                     avg        max deviation    avg deviation 
+nothing               58726885.4      82422372.6       22013105.4
+lttng                 60472393.7     104922358.3       29556476.1
+lttng + xx            63057551.5      37251060.5       14607127.3
+lttng + saving       155469081.0     154948460.0       40886940.8
+lttng + blocking     179774425.8      91054100.2       34219658.2
+usdt                  68163781.7     202696065.3       41348779.3
+usdt + xx             64925924.4      71480060.6       20500514.4
+usdt + lttng         289510167.1      65813937.9       37275547.3
