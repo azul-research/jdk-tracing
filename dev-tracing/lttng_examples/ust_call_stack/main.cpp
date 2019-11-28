@@ -1,4 +1,6 @@
 #include <bits/stdc++.h>
+#include <thread>
+#include <pthread.h>
 using namespace std;
 
 int bar(int cnt);
@@ -18,14 +20,24 @@ int bar(int cnt) {
 	return bar(cnt - 1);
 }
 
+void *fn(void*) {
+	bar(10);
+	return NULL;
+}
+
 int main() {
 	srand(time(0));
 	int n = rand()%100 + 100;
 	int a[n];
+	
 	for (int i = 0; i < n; i++) {
 		a[i] = rand()%1000;
 		foo(i);
 	}
-	sort(a, a + n);
+
+
+	pthread_t thr;
+	pthread_create(&thr, NULL, fn, NULL);
 	cout << foo(n) << ' ' << bar(n) << endl;
+	pthread_join(thr, NULL);
 }

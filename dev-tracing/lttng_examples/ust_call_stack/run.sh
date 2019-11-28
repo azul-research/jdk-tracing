@@ -1,6 +1,6 @@
 #!/bin/bash
 
-g++ -std=c++11 -g  -finstrument-functions main.cpp -o main
+g++ -std=c++11 -g  -finstrument-functions main.cpp -o main -lpthread
 nm  --demangle main >mapping.txt
 lttng create ust-trace --output=./ust-trace
 
