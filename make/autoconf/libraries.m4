@@ -130,6 +130,10 @@ AC_DEFUN_ONCE([LIB_SETUP_LIBRARIES],
     BASIC_JVM_LIBS="$BASIC_JVM_LIBS -lthread"
   fi
 
+  if test "x$INCLUDE_LTTNG" = xtrue; then
+    BASIC_JVM_LIBS="$BASIC_JVM_LIBS -ldl -llttng-ust" 
+  fi 
+
   # perfstat lib
   if test "x$OPENJDK_TARGET_OS" = xaix; then
     BASIC_JVM_LIBS="$BASIC_JVM_LIBS -lperfstat"

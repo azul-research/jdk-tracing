@@ -50,6 +50,14 @@
 #include "dtracefiles/hotspot_jni.h"
 #include "dtracefiles/hs_private.h"
 
+#elif defined(LTTNG_ENABLED)
+
+#include "utilities/lttng.hpp"
+#define DTRACE_ONLY(x) x
+#define NOT_DTRACE(x)
+
+#define HS_DTRACE_WORKAROUND_TAIL_CALL_BUG()
+  
 #else /* defined(DTRACE_ENABLED) */
 
 #define DTRACE_ONLY(x)
