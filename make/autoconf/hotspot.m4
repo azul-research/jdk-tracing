@@ -209,9 +209,6 @@ AC_DEFUN_ONCE([HOTSPOT_SETUP_LTTNG],
       [enable lttng hotspot tracepoints.])], [lttng_enabled=yes])
 
   INCLUDE_LTTNG=true
-  if test "x$INCLUDE_DTRACE" = "xtrue" && test "$INCLUDE_LTTNG" = "xtrue"; then
-    AC_MSG_ERROR([dtrace and lttng can not be included at the same time])
-  fi
 ])
 
 
@@ -380,7 +377,7 @@ AC_DEFUN_ONCE([HOTSPOT_SETUP_JVM_FEATURES],
     DISABLED_JVM_FEATURES="$DISABLED_JVM_FEATURES epsilongc g1gc zgc shenandoahgc"
   fi
 
- Turn on additional features based on other parts of configure
+  # Turn on additional features based on other parts of configure
   if test "x$INCLUDE_DTRACE" = "xtrue"; then
     JVM_FEATURES="$JVM_FEATURES dtrace"
   else

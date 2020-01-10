@@ -8,8 +8,8 @@
 #undef TRACEPOINT_INCLUDE
 #define TRACEPOINT_INCLUDE "./utilities/lttngHSPrivate.hpp"
 
-#if !defined(_VM_METHODS_TP_H) || defined(TRACEPOINT_HEADER_MULTI_READ)
-#define _VM_METHODS_TP_H 
+#if !defined(HOTSPOT_PRIVATE__TP_H) || defined(TRACEPOINT_HEADER_MULTI_READ)
+#define HOTSPOT_PRIVATE__TP_H 
 
 #include <lttng/tracepoint.h>
 

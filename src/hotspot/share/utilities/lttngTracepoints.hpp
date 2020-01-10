@@ -8,8 +8,8 @@
 #undef TRACEPOINT_INCLUDE
 #define TRACEPOINT_INCLUDE "./utilities/lttngTracepoints.hpp"
 
-#if !defined(_VM_METHODS_TP_H) || defined(TRACEPOINT_HEADER_MULTI_READ)
-#define _VM_METHODS_TP_H 
+#if !defined(HOTSPOT__TP_H) || defined(TRACEPOINT_HEADER_MULTI_READ)
+#define HOTSPOT__TP_H
 
 #include <lttng/tracepoint.h>
 
@@ -27,7 +27,7 @@ TRACEPOINT_EVENT(
         ),
     TP_FIELDS(
         ctf_string(class_name, name)
-        // ctf_integer(class_loader_data, class_loader_data) // ?????????????
+        ctf_integer(uintptr_t, class_loader, class_loader)
         ctf_integer(uintptr_t, shared, shared)
         )
 )
@@ -45,7 +45,7 @@ TRACEPOINT_EVENT( //called nowhere
         ),
     TP_FIELDS(
         ctf_string(class_name, name)
-        // ctf_integer(class_loader_data, class_loader_data) // ?????????????
+        ctf_integer(uintptr_t, class_loader, class_loader)
         ctf_integer(uintptr_t, shared, shared)
         )
 )
@@ -57,12 +57,13 @@ TRACEPOINT_EVENT(
     TP_ARGS(
         char*, name,
         uintptr_t, name_len,
-        void*, class_loader, // ??? 
+        void*, class_loader, 
         intptr_t, thread_type,
         int, wait
         ),
     TP_FIELDS(
         ctf_string(class_name, name)
+        ctf_integer(uintptr_t, class_loader, class_loader)
         ctf_integer(intptr_t, thread_type, thread_type)
         ctf_integer(int, wait, wait)
         )
@@ -77,12 +78,13 @@ TRACEPOINT_EVENT(
     TP_ARGS(
         char*, name,
         uintptr_t, name_len,
-        void*, class_loader, // ??? 
+        void*, class_loader,
         intptr_t, thread_type,
         int, wait
         ),
     TP_FIELDS(
         ctf_string(class_name, name)
+        ctf_integer(uintptr_t, class_loader, class_loader)
         ctf_integer(intptr_t, thread_type, thread_type)
         ctf_integer(int, wait, wait)
         )
@@ -95,12 +97,13 @@ TRACEPOINT_EVENT(
     TP_ARGS(
         char*, name,
         uintptr_t, name_len,
-        void*, class_loader, // ??? 
+        void*, class_loader,
         intptr_t, thread_type,
         int, wait
         ),
     TP_FIELDS(
         ctf_string(class_name, name)
+        ctf_integer(uintptr_t, class_loader, class_loader)
         ctf_integer(intptr_t, thread_type, thread_type)
         ctf_integer(int, wait, wait)
         )
@@ -113,12 +116,13 @@ TRACEPOINT_EVENT(
     TP_ARGS(
         char*, name,
         uintptr_t, name_len,
-        void*, class_loader, // ??? 
+        void*, class_loader,
         intptr_t, thread_type,
         int, wait
         ),
     TP_FIELDS(
         ctf_string(class_name, name)
+        ctf_integer(uintptr_t, class_loader, class_loader)
         ctf_integer(intptr_t, thread_type, thread_type)
         ctf_integer(int, wait, wait)
         )
@@ -131,12 +135,13 @@ TRACEPOINT_EVENT(
     TP_ARGS(
         char*, name,
         uintptr_t, name_len,
-        void*, class_loader, // ??? 
+        void*, class_loader,
         intptr_t, thread_type,
         int, wait
         ),
     TP_FIELDS(
         ctf_string(class_name, name)
+        ctf_integer(uintptr_t, class_loader, class_loader)
         ctf_integer(intptr_t, thread_type, thread_type)
         ctf_integer(int, wait, wait)
         )
@@ -149,12 +154,13 @@ TRACEPOINT_EVENT(
     TP_ARGS(
         char*, name,
         uintptr_t, name_len,
-        void*, class_loader, // ??? 
+        void*, class_loader,
         intptr_t, thread_type,
         int, wait
         ),
     TP_FIELDS(
         ctf_string(class_name, name)
+        ctf_integer(uintptr_t, class_loader, class_loader)
         ctf_integer(intptr_t, thread_type, thread_type)
         ctf_integer(int, wait, wait)
         )
@@ -167,12 +173,13 @@ TRACEPOINT_EVENT(
     TP_ARGS(
         char*, name,
         uintptr_t, name_len,
-        void*, class_loader, // ??? 
+        void*, class_loader,
         intptr_t, thread_type,
         int, wait
         ),
     TP_FIELDS(
         ctf_string(class_name, name)
+        ctf_integer(uintptr_t, class_loader, class_loader)
         ctf_integer(intptr_t, thread_type, thread_type)
         ctf_integer(int, wait, wait)
         )
@@ -185,12 +192,13 @@ TRACEPOINT_EVENT(
     TP_ARGS(
         char*, name,
         uintptr_t, name_len,
-        void*, class_loader, // ??? 
+        void*, class_loader,
         intptr_t, thread_type,
         int, wait
         ),
     TP_FIELDS(
         ctf_string(class_name, name)
+        ctf_integer(uintptr_t, class_loader, class_loader)
         ctf_integer(intptr_t, thread_type, thread_type)
         ctf_integer(int, wait, wait)
         )
@@ -247,8 +255,8 @@ TRACEPOINT_EVENT(
     TP_ARGS(
             bool, full),
     TP_FIELDS(
-        ctf_integer(bool, full, full) //?? 
-        )
+        ctf_integer(bool, full, full)
+    )
 
 )
 // src/hotspot/share/gc/shared/gcVMOperations.cpp
@@ -603,7 +611,7 @@ TRACEPOINT_EVENT(
     thread__sleep__end,
     
     TP_ARGS(
-        int, is_interrupted // i guess
+        int, is_interrupted
         ),
     TP_FIELDS(
             ctf_integer(int, is_interrupted, is_interrupted)
