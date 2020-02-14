@@ -22,12 +22,12 @@ TRACEPOINT_EVENT(
     TP_ARGS(
         char*, name,
         uintptr_t, name_len,
-        void*, class__loader_data,
+        void*, class_loader,
         uintptr_t, shared
         ),
     TP_FIELDS(
         ctf_string(class_name, name)
-        ctf_integer(uintptr_t, class_loader, class_loader)
+        ctf_integer(uintptr_t, class_loader, (uintptr_t) class_loader)
         ctf_integer(uintptr_t, shared, shared)
         )
 )
@@ -40,12 +40,12 @@ TRACEPOINT_EVENT( //called nowhere
     TP_ARGS(
         char*, name,
         uintptr_t, name_len,
-        void*, class__loader_data,
+        void*, class_loader,
         uintptr_t, shared
         ),
     TP_FIELDS(
         ctf_string(class_name, name)
-        ctf_integer(uintptr_t, class_loader, class_loader)
+        ctf_integer(uintptr_t, class_loader, (uintptr_t) class_loader)
         ctf_integer(uintptr_t, shared, shared)
         )
 )
@@ -63,7 +63,7 @@ TRACEPOINT_EVENT(
         ),
     TP_FIELDS(
         ctf_string(class_name, name)
-        ctf_integer(uintptr_t, class_loader, class_loader)
+        ctf_integer(uintptr_t, class_loader, (uintptr_t) class_loader)
         ctf_integer(intptr_t, thread_type, thread_type)
         ctf_integer(int, wait, wait)
         )
@@ -84,7 +84,7 @@ TRACEPOINT_EVENT(
         ),
     TP_FIELDS(
         ctf_string(class_name, name)
-        ctf_integer(uintptr_t, class_loader, class_loader)
+        ctf_integer(uintptr_t, class_loader, (uintptr_t) class_loader)
         ctf_integer(intptr_t, thread_type, thread_type)
         ctf_integer(int, wait, wait)
         )
@@ -103,7 +103,7 @@ TRACEPOINT_EVENT(
         ),
     TP_FIELDS(
         ctf_string(class_name, name)
-        ctf_integer(uintptr_t, class_loader, class_loader)
+        ctf_integer(uintptr_t, class_loader, (uintptr_t) class_loader)
         ctf_integer(intptr_t, thread_type, thread_type)
         ctf_integer(int, wait, wait)
         )
@@ -122,7 +122,7 @@ TRACEPOINT_EVENT(
         ),
     TP_FIELDS(
         ctf_string(class_name, name)
-        ctf_integer(uintptr_t, class_loader, class_loader)
+        ctf_integer(uintptr_t, class_loader, (uintptr_t) class_loader)
         ctf_integer(intptr_t, thread_type, thread_type)
         ctf_integer(int, wait, wait)
         )
@@ -141,7 +141,7 @@ TRACEPOINT_EVENT(
         ),
     TP_FIELDS(
         ctf_string(class_name, name)
-        ctf_integer(uintptr_t, class_loader, class_loader)
+        ctf_integer(uintptr_t, class_loader, (uintptr_t) class_loader)
         ctf_integer(intptr_t, thread_type, thread_type)
         ctf_integer(int, wait, wait)
         )
@@ -160,7 +160,7 @@ TRACEPOINT_EVENT(
         ),
     TP_FIELDS(
         ctf_string(class_name, name)
-        ctf_integer(uintptr_t, class_loader, class_loader)
+        ctf_integer(uintptr_t, class_loader, (uintptr_t) class_loader)
         ctf_integer(intptr_t, thread_type, thread_type)
         ctf_integer(int, wait, wait)
         )
@@ -179,7 +179,7 @@ TRACEPOINT_EVENT(
         ),
     TP_FIELDS(
         ctf_string(class_name, name)
-        ctf_integer(uintptr_t, class_loader, class_loader)
+        ctf_integer(uintptr_t, class_loader, (uintptr_t) class_loader)
         ctf_integer(intptr_t, thread_type, thread_type)
         ctf_integer(int, wait, wait)
         )
@@ -198,7 +198,7 @@ TRACEPOINT_EVENT(
         ),
     TP_FIELDS(
         ctf_string(class_name, name)
-        ctf_integer(uintptr_t, class_loader, class_loader)
+        ctf_integer(uintptr_t, class_loader, (uintptr_t) class_loader)
         ctf_integer(intptr_t, thread_type, thread_type)
         ctf_integer(int, wait, wait)
         )
