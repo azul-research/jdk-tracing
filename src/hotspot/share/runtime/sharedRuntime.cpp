@@ -975,7 +975,7 @@ int SharedRuntime::dtrace_object_alloc_base(Thread* thread, oopDesc* o, int size
   assert(DTraceAllocProbes, "wrong call");
   Klass* klass = o->klass();
   Symbol* name = klass->name();
-  HOTSPOT_OBJECT_ALLOC(
+  HOTSPOT_OBJECT_ALLOC_WRAPPER(
                    get_java_tid(thread),
                    (char *) name->bytes(), name->utf8_length(), size * HeapWordSize);
   return 0;

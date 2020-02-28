@@ -110,7 +110,7 @@ void VM_CMS_Initial_Mark::doit() {
     // Nothing to do.
     return;
   }
-  HS_PRIVATE_CMS_INITMARK_BEGIN();
+  HS_PRIVATE_CMS_INITMARK_BEGIN_WRAPPER();
   GCIdMark gc_id_mark(_gc_id);
 
   _collector->_gc_timer_cm->register_gc_pause_start("Initial Mark");
@@ -127,7 +127,7 @@ void VM_CMS_Initial_Mark::doit() {
 
   _collector->_gc_timer_cm->register_gc_pause_end();
 
-  HS_PRIVATE_CMS_INITMARK_END();
+  HS_PRIVATE_CMS_INITMARK_END_WRAPPER();
 }
 
 //////////////////////////////////////////////////////////
@@ -138,7 +138,7 @@ void VM_CMS_Final_Remark::doit() {
     // Nothing to do.
     return;
   }
-  HS_PRIVATE_CMS_REMARK_BEGIN();
+  HS_PRIVATE_CMS_REMARK_BEGIN_WRAPPER();
   GCIdMark gc_id_mark(_gc_id);
 
   _collector->_gc_timer_cm->register_gc_pause_start("Final Mark");
@@ -156,7 +156,7 @@ void VM_CMS_Final_Remark::doit() {
   _collector->save_heap_summary();
   _collector->_gc_timer_cm->register_gc_pause_end();
 
-  HS_PRIVATE_CMS_REMARK_END();
+  HS_PRIVATE_CMS_REMARK_END_WRAPPER();
 }
 
 // VM operation to invoke a concurrent collection of a

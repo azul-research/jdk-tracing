@@ -70,16 +70,16 @@
   {                                                                        \
     if (DTraceMonitorProbes) {                                             \
       DTRACE_MONITOR_PROBE_COMMON(obj, thread);                            \
-      HOTSPOT_MONITOR_WAIT(jtid,                                           \
+      HOTSPOT_MONITOR_WAIT_WRAPPER(jtid,                                           \
                            (monitor), bytes, len, (millis));               \
     }                                                                      \
   }
 
-#define HOTSPOT_MONITOR_contended__enter HOTSPOT_MONITOR_CONTENDED_ENTER
-#define HOTSPOT_MONITOR_contended__entered HOTSPOT_MONITOR_CONTENDED_ENTERED
-#define HOTSPOT_MONITOR_contended__exit HOTSPOT_MONITOR_CONTENDED_EXIT
-#define HOTSPOT_MONITOR_notify HOTSPOT_MONITOR_NOTIFY
-#define HOTSPOT_MONITOR_notifyAll HOTSPOT_MONITOR_NOTIFYALL
+#define HOTSPOT_MONITOR_contended__enter HOTSPOT_MONITOR_CONTENDED_ENTER_WRAPPER
+#define HOTSPOT_MONITOR_contended__entered HOTSPOT_MONITOR_CONTENDED_ENTER_WRAPPERED
+#define HOTSPOT_MONITOR_contended__exit HOTSPOT_MONITOR_CONTENDED_EXIT_WRAPPER
+#define HOTSPOT_MONITOR_notify HOTSPOT_MONITOR_NOTIFY_WRAPPER
+#define HOTSPOT_MONITOR_notifyAll HOTSPOT_MONITOR_NOTIFY_WRAPPERALL
 
 #define DTRACE_MONITOR_PROBE(probe, monitor, obj, thread)                  \
   {                                                                        \
