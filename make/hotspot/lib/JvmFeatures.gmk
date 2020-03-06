@@ -67,6 +67,10 @@ ifeq ($(call check-jvm-feature, dtrace), true)
   JVM_CFLAGS_FEATURES += -DDTRACE_ENABLED
 endif
 
+ifeq ($(call check-jvm-feature, lttng), true)
+    JVM_CFLAGS_FEATURES += -DLTTNG_ENABLED
+endif
+
 ifeq ($(call check-jvm-feature, static-build), true)
   JVM_CFLAGS_FEATURES += -DSTATIC_BUILD=1
 endif

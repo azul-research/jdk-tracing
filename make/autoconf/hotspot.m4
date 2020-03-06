@@ -24,7 +24,7 @@
 #
 
 # All valid JVM features, regardless of platform
-VALID_JVM_FEATURES="compiler1 compiler2 zero minimal dtrace jvmti jvmci \
+VALID_JVM_FEATURES="compiler1 compiler2 zero minimal dtrace lttng jvmti jvmci \
     graal vm-structs jni-check services management cmsgc epsilongc g1gc parallelgc serialgc shenandoahgc zgc nmt cds \
     static-build link-time-opt aot jfr"
 
@@ -199,6 +199,17 @@ AC_DEFUN_ONCE([HOTSPOT_SETUP_DTRACE],
   fi
 ])
 
+
+AC_DEFUN_ONCE([HOTSPOT_SETUP_LTTNG],
+[
+  AC_ARG_ENABLE([lttng], [AS_HELP_STRING([--enable-lttng],
+      [enable lttng hotspot tracepoints.])], [lttng_enabled=yes])
+  if test "x$enable_lttng" = "xyes" ; then
+    INCLUDE_LTTNG=true
+  fi
+])
+
+
 ################################################################################
 # Check if AOT should be enabled
 #
@@ -369,6 +380,14 @@ AC_DEFUN_ONCE([HOTSPOT_SETUP_JVM_FEATURES],
   else
     if HOTSPOT_CHECK_JVM_FEATURE(dtrace); then
       AC_MSG_ERROR([To enable dtrace, you must use --enable-dtrace])
+    fi
+  fi
+
+    if test "x$INCLUDE_LTTNG" = "xtrue"; then
+    JVM_FEATURES="$JVM_FEATURES lttng"
+  else
+    if HOTSPOT_CHECK_JVM_FEATURE(lttng); then
+      AC_MSG_ERROR([To enable lttng, you must use --enable-lttng])
     fi
   fi
 
