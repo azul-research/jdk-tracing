@@ -975,7 +975,7 @@ int SharedRuntime::dtrace_object_alloc_base(Thread* thread, oopDesc* o, int size
   assert(DTraceAllocProbes, "wrong call");
   Klass* klass = o->klass();
   Symbol* name = klass->name();
-  HOTSPOT_OBJECT_ALLOC(
+  HOTSPOT_OBJECT_ALLOC_WRAPPER(
                    get_java_tid(thread),
                    (char *) name->bytes(), name->utf8_length(), size * HeapWordSize);
   return 0;
@@ -987,7 +987,7 @@ JRT_LEAF(int, SharedRuntime::dtrace_method_entry(
   Symbol* kname = method->klass_name();
   Symbol* name = method->name();
   Symbol* sig = method->signature();
-  HOTSPOT_METHOD_ENTRY(
+  HOTSPOT_METHOD_ENTRY_WRAPPER(
       get_java_tid(thread),
       (char *) kname->bytes(), kname->utf8_length(),
       (char *) name->bytes(), name->utf8_length(),
@@ -1001,7 +1001,7 @@ JRT_LEAF(int, SharedRuntime::dtrace_method_exit(
   Symbol* kname = method->klass_name();
   Symbol* name = method->name();
   Symbol* sig = method->signature();
-  HOTSPOT_METHOD_RETURN(
+  HOTSPOT_METHOD_RETURN_WRAPPER(
       get_java_tid(thread),
       (char *) kname->bytes(), kname->utf8_length(),
       (char *) name->bytes(), name->utf8_length(),

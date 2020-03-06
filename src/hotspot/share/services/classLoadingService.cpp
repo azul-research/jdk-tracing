@@ -40,8 +40,8 @@
 
 // Only bother with this argument setup if dtrace is available
 
-#define HOTSPOT_CLASS_unloaded HOTSPOT_CLASS_UNLOADED
-#define HOTSPOT_CLASS_loaded HOTSPOT_CLASS_LOADED
+#define HOTSPOT_CLASS_unloaded HOTSPOT_CLASS_UNLOADED_WRAPPER
+#define HOTSPOT_CLASS_loaded HOTSPOT_CLASS_LOADED_WRAPPER
 #define DTRACE_CLASSLOAD_PROBE(type, clss, shared)  \
   {                                                 \
     char* data = NULL;                              \

@@ -151,7 +151,7 @@ void VMOperationQueue::drain_list_oops_do(OopClosure* f) {
 // High-level interface
 void VMOperationQueue::add(VM_Operation *op) {
 
-  HOTSPOT_VMOPS_REQUEST(
+  HOTSPOT_VMOPS_REQUEST_WRAPPER(
                    (char *) op->name(), strlen(op->name()),
                    op->evaluation_mode());
 
@@ -397,7 +397,7 @@ void VMThread::evaluate_operation(VM_Operation* op) {
 
   {
     PerfTraceTime vm_op_timer(perf_accumulated_vm_operation_time());
-    HOTSPOT_VMOPS_BEGIN(
+    HOTSPOT_VMOPS_BEGIN_WRAPPER(
                      (char *) op->name(), strlen(op->name()),
                      op->evaluation_mode());
 
@@ -407,7 +407,7 @@ void VMThread::evaluate_operation(VM_Operation* op) {
       post_vm_operation_event(&event, op);
     }
 
-    HOTSPOT_VMOPS_END(
+    HOTSPOT_VMOPS_END_WRAPPER(
                      (char *) op->name(), strlen(op->name()),
                      op->evaluation_mode());
   }

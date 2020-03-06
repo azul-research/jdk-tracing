@@ -142,8 +142,8 @@ void universe_post_module_init();  // must happen after call_initPhase2
 
 // Only bother with this argument setup if dtrace is available
 
-  #define HOTSPOT_THREAD_PROBE_start HOTSPOT_THREAD_START
-  #define HOTSPOT_THREAD_PROBE_stop HOTSPOT_THREAD_STOP
+  #define HOTSPOT_THREAD_PROBE_start HOTSPOT_THREAD_START_WRAPPER
+  #define HOTSPOT_THREAD_PROBE_stop HOTSPOT_THREAD_STOP_WRAPPER
 
   #define DTRACE_THREAD_PROBE(probe, javathread)                           \
     {                                                                      \
@@ -3795,7 +3795,7 @@ jint Threads::create_vm(JavaVMInitArgs* args, bool* canTryAgain) {
     os::pause();
   }
 
-  HOTSPOT_VM_INIT_BEGIN();
+  HOTSPOT_VM_INIT_BEGIN_WRAPPER();
 
   // Timing (must come after argument parsing)
   TraceTime timer("Create VM", TRACETIME_LOG(Info, startuptime));
@@ -3953,7 +3953,7 @@ jint Threads::create_vm(JavaVMInitArgs* args, bool* canTryAgain) {
   LogConfiguration::post_initialize();
   Metaspace::post_initialize();
 
-  HOTSPOT_VM_INIT_END();
+  HOTSPOT_VM_INIT_END_WRAPPER();
 
   // record VM initialization completion time
 #if INCLUDE_MANAGEMENT

@@ -80,7 +80,7 @@
       Symbol* klass_name = m->klass_name();                               \
       Symbol* name = m->name();                                           \
       Symbol* signature = m->signature();                                 \
-      HOTSPOT_COMPILED_METHOD_UNLOAD(                                     \
+      HOTSPOT_COMPILED_METHOD_UNLOAD_WRAPPER(                                     \
         (char *) klass_name->bytes(), klass_name->utf8_length(),                   \
         (char *) name->bytes(), name->utf8_length(),                               \
         (char *) signature->bytes(), signature->utf8_length());                    \
@@ -1574,7 +1574,7 @@ void nmethod::flush_dependencies(bool delete_immediately) {
 void nmethod::post_compiled_method_load_event() {
 
   Method* moop = method();
-  HOTSPOT_COMPILED_METHOD_LOAD(
+  HOTSPOT_COMPILED_METHOD_LOAD_WRAPPER(
       (char *) moop->klass_name()->bytes(),
       moop->klass_name()->utf8_length(),
       (char *) moop->name()->bytes(),
