@@ -28,8 +28,6 @@
 
 #if defined(DTRACE_ENABLED)
 
-#warning "dtrace enabled"
-
 #define SDT_USE_VARIADIC
 #include <sys/sdt.h>
 
@@ -55,7 +53,6 @@
 
 #elif defined(LTTNG_ENABLED) /* defined(DTRACE_ENABLED) */
 
-#warning "dtrace disabled, lttng enabled"
 
 #define DTRACE_ONLY(x) x
 #define NOT_DTRACE(x)
@@ -75,21 +72,15 @@
 
 #if defined(LTTNG_ENABLED)  // defined(LTTNG_ENABLED) 
 
-// #undef LTTNG_UST_HAVE_SDT_INTEGRATION
-
-// #endif
-#warning "lttng enabled"
 #include "utilities/hotspotLTTngDtrace.h"
 #include "utilities/hs_privateLTTngDtrace.h"
 
 #else
 
-#warning "lttng disabled"
 #include "utilities/hotspotDtrace.h"
 #include "utilities/hs_privateDtrace.h"
 
 #endif /* defined(LTTNG_ENABLED) */
-
-// #error 5 
+ 
 
 #endif // SHARE_UTILITIES_DTRACE_HPP
