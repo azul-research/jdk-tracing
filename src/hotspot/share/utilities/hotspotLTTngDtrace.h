@@ -1,5 +1,3 @@
-#include "utilities/lttng.hpp"
-
 #define HOTSPOT_CLASS_LOADED_WRAPPER(arg0,arg1,arg2,arg3) \
 HOTSPOT_CLASS_LOADED(arg0,arg1,arg2,arg3);tracepoint(hotspot, class__loaded, arg0,arg1,arg2,arg3)
 

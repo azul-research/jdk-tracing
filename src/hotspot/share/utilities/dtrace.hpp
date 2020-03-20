@@ -26,10 +26,7 @@
 #ifndef SHARE_UTILITIES_DTRACE_HPP
 #define SHARE_UTILITIES_DTRACE_HPP
 
-#if defined(DTRACE_ENABLED)
-
-#define SDT_USE_VARIADIC
-#include <sys/sdt.h>
+#if defined(LTTNG_ENABLED) || defined(DTRACE_ENABLED)
 
 #define DTRACE_ONLY(x) x
 #define NOT_DTRACE(x)
@@ -47,40 +44,46 @@
 #error "dtrace enabled for unknown os"
 #endif /* defined(SOLARIS) */
 
-#include "dtracefiles/hotspot.h"
-#include "dtracefiles/hotspot_jni.h"
-#include "dtracefiles/hs_private.h"
-
-#elif defined(LTTNG_ENABLED) /* defined(DTRACE_ENABLED) */
-
-
-#define DTRACE_ONLY(x) x
-#define NOT_DTRACE(x)
-
-#define HS_DTRACE_WORKAROUND_TAIL_CALL_BUG()
-  
-#else /* defined(DTRACE_ENABLED) */
+#else
 
 #define DTRACE_ONLY(x)
 #define NOT_DTRACE(x) x
 
 #define HS_DTRACE_WORKAROUND_TAIL_CALL_BUG()
 
+#endif /* defined(LTTNG_ENABLED) || defined(DTRACE_ENABLED) */
+
+
+#if defined(LTTNG_ENABLED) 
+
+#include <lttng/tracepoint.h>
+
+#include <utilities/lttngTracepoints.hpp>
+#include <utilities/lttngHSPrivate.hpp>
+#include <utilities/lttng_hs_jni.hpp>
+
+#else
+
+#define tracepoint(...)
+
+#endif /* defined(LTTNG_ENABLED) */
+
+
+#if defined(DTRACE_ENABLED) && (!defined(LTTNG_ENABLED) || !defined(LTTNG_UST_HAVE_SDT_INTEGRATION))
+#include <sys/sdt.h>
+
+#include "dtracefiles/hotspot.h"
+#include "dtracefiles/hotspot_jni.h"
+#include "dtracefiles/hs_private.h"
+
+#else /* defined(DTRACE_ENABLED) */
+
 #include "dtrace_disabled.hpp"
 
 #endif /* defined(DTRACE_ENABLED) */
 
-#if defined(LTTNG_ENABLED)  // defined(LTTNG_ENABLED) 
-
 #include "utilities/hotspotLTTngDtrace.h"
 #include "utilities/hs_privateLTTngDtrace.h"
-
-#else
-
-#include "utilities/hotspotDtrace.h"
-#include "utilities/hs_privateDtrace.h"
-
-#endif /* defined(LTTNG_ENABLED) */
- 
+#include "utilities/hs_jniLTTngDtrace.h"
 
 #endif // SHARE_UTILITIES_DTRACE_HPP

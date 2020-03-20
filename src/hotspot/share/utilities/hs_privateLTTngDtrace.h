@@ -1,5 +1,3 @@
-#include "utilities/lttng.hpp"
-
 #define HS_PRIVATE_SAFEPOINT_BEGIN_WRAPPER() \
 HS_PRIVATE_SAFEPOINT_BEGIN();tracepoint(hs_private, safepoint__begin)
 
