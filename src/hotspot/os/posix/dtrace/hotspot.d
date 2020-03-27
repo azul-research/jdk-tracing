@@ -23,60 +23,62 @@
  */
 
 provider hotspot {
-  probe class__loaded(char*, uintptr_t, void*, uintptr_t);
-  probe class__unloaded(char*, uintptr_t, void*, uintptr_t);
-  probe class__initialization__required(char*, uintptr_t, void*, intptr_t);
-  probe class__initialization__recursive(char*, uintptr_t, void*, intptr_t,int);
-  probe class__initialization__concurrent(char*, uintptr_t, void*, intptr_t,int);
-  probe class__initialization__erroneous(char*, uintptr_t, void*, intptr_t, int);
-  probe class__initialization__super__failed(char*, uintptr_t, void*, intptr_t,int);
-  probe class__initialization__clinit(char*, uintptr_t, void*, intptr_t,int);
-  probe class__initialization__error(char*, uintptr_t, void*, intptr_t,int);
-  probe class__initialization__end(char*, uintptr_t, void*, intptr_t,int);
+  probe class__loaded(char* name, uintptr_t name_len, void* class_loader, uintptr_t shared);
+  probe class__unloaded(char* name, uintptr_t name_len, void* class_loader, uintptr_t shared);
+  probe class__initialization__required(char* name, uintptr_t name_len, void* class_loader, intptr_t thread_type);
+  probe class__initialization__recursive(char* name, uintptr_t name_len, void* class_loader, intptr_t thread_type, int wait);
+  probe class__initialization__concurrent(char* name, uintptr_t name_len, void* class_loader, intptr_t thread_type, int wait);
+  probe class__initialization__erroneous(char* name, uintptr_t name_len, void* class_loader, intptr_t thread_type, int wait);
+  probe class__initialization__super__failed(char* name, uintptr_t name_len, void* class_loader, intptr_t thread_type, int wait);
+  probe class__initialization__clinit(char* name, uintptr_t name_len, void* class_loader, intptr_t thread_type, int wait);
+  probe class__initialization__error(char* name, uintptr_t name_len, void* class_loader, intptr_t thread_type, int wait);
+  probe class__initialization__end(char* name, uintptr_t name_len, void* class_loader, intptr_t thread_type, int wait);
   probe vm__init__begin();
   probe vm__init__end();
   probe vm__shutdown();
-  probe vmops__request(char*, uintptr_t, int);
-  probe vmops__begin(char*, uintptr_t, int);
-  probe vmops__end(char*, uintptr_t, int);
-  probe gc__begin(uintptr_t);
+  probe vmops__request(char* name, uintptr_t name_len, int mode);
+  probe vmops__begin(char* name, uintptr_t name_len, int mode);
+  probe vmops__end(char* name, uintptr_t name_len, int mode);
+  probe gc__begin(uintptr_t full);
   probe gc__end();
   probe mem__pool__gc__begin(
-    char*, uintptr_t, char*, uintptr_t, 
-    uintptr_t, uintptr_t, uintptr_t, uintptr_t);
+    char* name, uintptr_t name_len, char* pool_name, uintptr_t pool_name_len, 
+    uintptr_t init_size, uintptr_t used, uintptr_t commited, uintptr_t max_size);
   probe mem__pool__gc__end(
-    char*, uintptr_t, char*, uintptr_t, 
-    uintptr_t, uintptr_t, uintptr_t, uintptr_t);
-  probe thread__start(char*, uintptr_t, uintptr_t, uintptr_t, uintptr_t);
-  probe thread__stop(char*, uintptr_t, uintptr_t, uintptr_t, uintptr_t);
-  probe thread__sleep__begin(long long);
-  probe thread__sleep__end(int);
+    char* name, uintptr_t name_len, char* pool_name, uintptr_t pool_name_len, 
+    uintptr_t init_size, uintptr_t used, uintptr_t commited, uintptr_t max_size);
+  probe thread__start(char* name, uintptr_t name_len, uintptr_t jtid, uintptr_t tid, uintptr_t is_daemon);
+  probe thread__stop(char* name, uintptr_t name_len, uintptr_t jtid, uintptr_t tid, uintptr_t is_daemon);
+  probe thread__sleep__begin(int64_t millis);
+  probe thread__sleep__end(int is_interrupted);
   probe thread__yield();
-  probe thread__park__begin(uintptr_t, int, long long);
-  probe thread__park__end(uintptr_t);
-  probe thread__unpark(uintptr_t);
+  probe thread__park__begin(uintptr_t thread_parker, int is_absolute, int64_t time);
+  probe thread__park__end(uintptr_t thread_parker);
+  probe thread__unpark(uintptr_t p);
   probe method__compile__begin(
-    char*, uintptr_t, char*, uintptr_t, char*, uintptr_t, char*, uintptr_t); 
+    char* comp_name, uintptr_t comp_name_len, char* class_name, uintptr_t class_name_len,
+    char* name, uintptr_t name_len, char* sig, uintptr_t sig_len); 
   probe method__compile__end(
-    char*, uintptr_t, char*, uintptr_t, char*, uintptr_t, 
-    char*, uintptr_t, uintptr_t); 
+    char* comp_name, uintptr_t comp_name_len, char* class_name, uintptr_t class_name_len,
+    char* name, uintptr_t name_len, char* sig, uintptr_t sig_len, uintptr_t success); 
   probe compiled__method__load(
-    char*, uintptr_t, char*, uintptr_t, char*, uintptr_t, void*, uintptr_t);
+    char* class_name, uintptr_t class_name_len, char* name, uintptr_t name_len, char* sig, uintptr_t sig_len,
+    void* insts_begin, uintptr_t insts_begin_len);
   probe compiled__method__unload(
-    char*, uintptr_t, char*, uintptr_t, char*, uintptr_t); 
-  probe monitor__contended__enter(uintptr_t, uintptr_t, char*, uintptr_t);
-  probe monitor__contended__entered(uintptr_t, uintptr_t, char*, uintptr_t);
-  probe monitor__contended__exit(uintptr_t, uintptr_t, char*, uintptr_t);
-  probe monitor__wait(uintptr_t, uintptr_t, char*, uintptr_t, uintptr_t);
-  probe monitor__waited(uintptr_t, uintptr_t, char*, uintptr_t);
-  probe monitor__notify(uintptr_t, uintptr_t, char*, uintptr_t);
-  probe monitor__notifyAll(uintptr_t, uintptr_t, char*, uintptr_t);
+    char* class_name, uintptr_t class_name_len, char* name, uintptr_t name_len, char* sig, uintptr_t sig_len); 
+  probe monitor__contended__enter(uintptr_t jtid, uintptr_t monitor, char* bytes, uintptr_t len);
+  probe monitor__contended__entered(uintptr_t jtid, uintptr_t monitor, char* bytes, uintptr_t len);
+  probe monitor__contended__exit(uintptr_t jtid, uintptr_t monitor, char* bytes, uintptr_t len);
+  probe monitor__wait(uintptr_t jtid, uintptr_t monitor, char* bytes, uintptr_t len, uintptr_t millis);
+  probe monitor__waited(uintptr_t jtid, uintptr_t monitor, char* bytes, uintptr_t len);
+  probe monitor__notify(uintptr_t jtid, uintptr_t monitor, char* bytes, uintptr_t len);
+  probe monitor__notifyAll(uintptr_t jtid, uintptr_t monitor, char* bytes, uintptr_t len);
 
-  probe object__alloc(int, char*, uintptr_t, uintptr_t);
+  probe object__alloc(int tid, char* name, uintptr_t name_len, uintptr_t size);
   probe method__entry(
-    int, char*, int, char*, int, char*, int);
+    int tid, char* class_name, int class_name_len, char* name, int name_len, char* sig, int sig_len);
   probe method__return(
-    int, char*, int, char*, int, char*, int);
+    int tid, char* class_name, int class_name_len, char* name, int name_len, char* sig, int sig_len);
 };
 
 #pragma D attributes Evolving/Evolving/Common provider hotspot provider
