@@ -6,7 +6,7 @@
 #define TRACEPOINT_PROVIDER hs_private
 
 #undef TRACEPOINT_INCLUDE
-#define TRACEPOINT_INCLUDE "./utilities/lttngHSPrivate.hpp"
+#define TRACEPOINT_INCLUDE "./utilities/lttng_hs_private.hpp"
 
 #if !defined(HOTSPOT_PRIVATE__TP_H) || defined(TRACEPOINT_HEADER_MULTI_READ)
 #define HOTSPOT_PRIVATE__TP_H 

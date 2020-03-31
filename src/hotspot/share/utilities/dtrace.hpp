@@ -58,8 +58,8 @@
 
 #include <lttng/tracepoint.h>
 
-#include <utilities/lttngTracepoints.hpp>
-#include <utilities/lttngHSPrivate.hpp>
+#include <utilities/lttng_hotspot.hpp>
+#include <utilities/lttng_hs_private.hpp>
 #include <utilities/lttng_hs_jni.hpp>
 
 #else
