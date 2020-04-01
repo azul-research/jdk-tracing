@@ -39,6 +39,7 @@ include HotspotCommon.gmk
 include gensrc/GensrcJfr.gmk
 include gensrc/GensrcAdlc.gmk
 include gensrc/GensrcDtrace.gmk
+include gensrc/GensrcLTTng.gmk
 include gensrc/GensrcJvmti.gmk
 
 $(eval $(call IncludeCustomExtension, hotspot/gensrc/GenerateSources.gmk))

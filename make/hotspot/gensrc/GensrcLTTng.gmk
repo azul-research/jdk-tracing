@@ -1,0 +1,17 @@
+LTTNG_SOURCE_DIR := $(TOPDIR)/src/hotspot/share/utilities
+LTTNG_GENSRC_DIR := $(JVM_VARIANT_OUTPUTDIR)/gensrc/lttng
+
+$(LTTNG_GENSRC_DIR)/%.o: $(LTTNG_SOURCE_DIR)/%.cpp
+	$(call MakeDir, $(@D))
+	$(CPP) -I$(LTTNG_SOURCE_DIR) -fpic -c $^ -o $@ 
+
+$(LTTNG_GENSRC_DIR)/lib%.so: $(LTTNG_GENSRC_DIR)/%.o 
+	$(CPP) -shared -o $@ $^ -llttng-ust -ldl
+
+LTTNG_LIB_FILES := $(addprefix $(LTTNG_GENSRC_DIR)/, \
+        liblttng_hs_jni.so \
+        liblttng_hotspot.so \
+        liblttng_hs_private.so \
+    )
+
+TARGETS += $(LTTNG_LIB_FILES)
