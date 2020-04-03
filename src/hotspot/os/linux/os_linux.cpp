@@ -5098,9 +5098,6 @@ void os::Linux::numa_init() {
   }
 }
 
-#include <unistd.h>
-#include <stdio.h> 
-
 // this is called _after_ the global arguments have been parsed
 jint os::init_2(void) {
 
