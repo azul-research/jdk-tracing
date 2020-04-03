@@ -3,6 +3,6 @@
 #define TRACEPOINT_CREATE_PROBES
 #define TRACEPOINT_DEFINE
 
-#include <utilities/lttng_hotspot.hpp>
+#include <utilities/lttng/lttng_hotspot.hpp>
 
 #endif

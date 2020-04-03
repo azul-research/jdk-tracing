@@ -5098,6 +5098,9 @@ void os::Linux::numa_init() {
   }
 }
 
+#include <unistd.h>
+#include <stdio.h> 
+
 // this is called _after_ the global arguments have been parsed
 jint os::init_2(void) {
 
@@ -5200,6 +5203,10 @@ jint os::init_2(void) {
   if (DumpSharedMappingsInCore) {
     set_coredump_filter(FILE_BACKED_SHARED_BIT);
   }
+
+#if defined(LTTNG_ENABLED)
+  dlopen("liblttng.so", RTLD_NOW | RTLD_GLOBAL);
+#endif
 
   return JNI_OK;
 }
