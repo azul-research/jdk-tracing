@@ -2,6 +2,6 @@
 
 #define TRACEPOINT_CREATE_PROBES
 
-#include <lttng/lttng_hs_jni.hpp>
+#include <lttng_hs_private.hpp>
 
 #endif

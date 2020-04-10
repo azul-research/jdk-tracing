@@ -6,7 +6,7 @@
 #define TRACEPOINT_PROVIDER hotspot_jni
 
 #undef TRACEPOINT_INCLUDE
-#define TRACEPOINT_INCLUDE "./lttng/lttng_hs_jni.hpp"
+#define TRACEPOINT_INCLUDE "./lttng_hs_jni.hpp"
 
 #if !defined(HS_JNI__TP_H) || defined(TRACEPOINT_HEADER_MULTI_READ)
 #define HS_JNI__TP_H

@@ -5202,7 +5202,10 @@ jint os::init_2(void) {
   }
 
 #if defined(LTTNG_ENABLED)
-  dlopen("liblttng.so", RTLD_NOW | RTLD_GLOBAL);
+  void* a = dlopen("liblttng.so", RTLD_NOW | RTLD_GLOBAL);
+  if (a == 0) {
+    printf("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\n");
+  }
 #endif
 
   return JNI_OK;

@@ -2,6 +2,6 @@
 
 #define TRACEPOINT_CREATE_PROBES
 
-#include <lttng/lttng_hotspot.hpp>
+#include <lttng_hotspot.hpp>
 
 #endif
