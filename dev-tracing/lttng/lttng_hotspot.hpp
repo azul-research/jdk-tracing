@@ -6,7 +6,7 @@
 #define TRACEPOINT_PROVIDER hotspot
 
 #undef TRACEPOINT_INCLUDE
-#define TRACEPOINT_INCLUDE "./utilities/lttng/lttng_hotspot.hpp"
+#define TRACEPOINT_INCLUDE "./lttng/lttng_hotspot.hpp"
 
 #if !defined(HOTSPOT__TP_H) || defined(TRACEPOINT_HEADER_MULTI_READ)
 #define HOTSPOT__TP_H

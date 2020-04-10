@@ -56,11 +56,9 @@
 
 #if defined(LTTNG_ENABLED) 
 
-#define TRACEPOINT_PROBE_DYNAMIC_LINKAGE
-
-#include <utilities/lttng/lttng_hotspot.hpp>
-#include <utilities/lttng/lttng_hs_private.hpp>
-#include <utilities/lttng/lttng_hs_jni.hpp>
+#include "lttng/lttng_hotspot.hpp"
+#include "lttng/lttng_hs_private.hpp"
+#include "lttng/lttng_hs_jni.hpp"
 
 #else
 

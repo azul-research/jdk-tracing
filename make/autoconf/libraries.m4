@@ -148,7 +148,7 @@ AC_DEFUN_ONCE([LIB_SETUP_LIBRARIES],
   fi
 
   if test "x$INCLUDE_LTTNG" = xtrue; then
-    BASIC_JVM_LIBS="$BASIC_JVM_LIBS -ldl -llttng-ust" 
+    BASIC_JVM_LIBS="$BASIC_JVM_LIBS -ldl" 
   fi
 
   JDKLIB_LIBS="$BASIC_JDKLIB_LIBS"
