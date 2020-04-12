@@ -1090,9 +1090,8 @@
 #define HOTSPOT_JNI_GETMODULE_RETURN(arg0)
 #define HOTSPOT_JNI_GETMODULE_RETURN_ENABLED()
 
-#if defined(DTRACE_ENABLED) /* !defined(DTRACE_ENABLED) */
-//#error This file should only be included when dtrace is not enabled
-#warning "disable_dtrace included"
+#if defined(DTRACE_ENABLED) && !(defined(LTTNG_ENABLED) && defined(LTTNG_UST_HAVE_SDT_INTEGRATION)) 
+#error This file should only be included when dtrace is not enabled or enabled lttng with sdt itegration
 #endif /* !defined(DTRACE_ENABLED) */
 
 #endif // SHARE_UTILITIES_DTRACE_DISABLED_HPP
