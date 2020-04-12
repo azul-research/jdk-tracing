@@ -33,7 +33,7 @@ include HotspotCommon.gmk
 
 include lib/CompileJvm.gmk
 include lib/CompileDtraceLibraries.gmk
-include gensrc/GensrcLTTng.gmk
+include lib/CompileLTTngLibrary.gmk
 
 ifeq ($(BUILD_GTEST), true)
   include lib/CompileGtest.gmk

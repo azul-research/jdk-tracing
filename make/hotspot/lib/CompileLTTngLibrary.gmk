@@ -10,5 +10,6 @@ $(eval $(call SetupNativeCompilation, LTTNG_LIBS, \
    OBJECT_DIR := $(JVM_OUTPUTDIR)/objs_lttng, \
    DEFINE_THIS_FILE := false, \
 ))
-
-TARGETS += $(LTTNG_LIBS)
+ifeq ($(call check-jvm-feature, dtrace), true)
+    TARGETS += $(LTTNG_LIBS)
+endif
