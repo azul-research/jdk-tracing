@@ -5202,7 +5202,10 @@ jint os::init_2(void) {
   }
 
 #if defined(LTTNG_ENABLED)
-  dlopen("liblttng.so", RTLD_NOW | RTLD_GLOBAL);
+  if (!dlopen("liblttng.so", RTLD_NOW | RTLD_GLOBAL)) {
+                  /* a problem with loading lttng.so, lttng-ust.so probably unavilable, ignore */
+           }
+
 #endif
 
   return JNI_OK;

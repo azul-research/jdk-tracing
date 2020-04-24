@@ -147,10 +147,6 @@ AC_DEFUN_ONCE([LIB_SETUP_LIBRARIES],
         wsock32.lib winmm.lib version.lib psapi.lib"
   fi
 
-  if test "x$INCLUDE_LTTNG" = xtrue; then
-    BASIC_JVM_LIBS="$BASIC_JVM_LIBS -ldl" 
-  fi
-
   JDKLIB_LIBS="$BASIC_JDKLIB_LIBS"
   JDKEXE_LIBS=""
   JVM_LIBS="$BASIC_JVM_LIBS"
