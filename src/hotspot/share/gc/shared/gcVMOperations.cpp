@@ -53,13 +53,13 @@ VM_GC_Operation::~VM_GC_Operation() {
 // have to call it here, so it's only in one file.  Can't create new probes
 // for the other file anymore.   The dtrace probes have to remain stable.
 void VM_GC_Operation::notify_gc_begin(bool full) {
-  HOTSPOT_GC_BEGIN(
+  HOTSPOT_GC_BEGIN_WRAPPER(
                    full);
   HS_DTRACE_WORKAROUND_TAIL_CALL_BUG();
 }
 
 void VM_GC_Operation::notify_gc_end() {
-  HOTSPOT_GC_END();
+  HOTSPOT_GC_END_WRAPPER();
   HS_DTRACE_WORKAROUND_TAIL_CALL_BUG();
 }
 

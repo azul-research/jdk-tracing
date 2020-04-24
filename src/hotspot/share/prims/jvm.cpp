@@ -2944,7 +2944,7 @@ JVM_END
 JVM_ENTRY(void, JVM_Yield(JNIEnv *env, jclass threadClass))
   JVMWrapper("JVM_Yield");
   if (os::dont_yield()) return;
-  HOTSPOT_THREAD_YIELD();
+  HOTSPOT_THREAD_YIELD_WRAPPER();
   os::naked_yield();
 JVM_END
 
@@ -2970,7 +2970,7 @@ JVM_ENTRY(void, JVM_Sleep(JNIEnv* env, jclass threadClass, jlong millis))
   // And set new thread state to SLEEPING.
   JavaThreadSleepState jtss(thread);
 
-  HOTSPOT_THREAD_SLEEP_BEGIN(millis);
+  HOTSPOT_THREAD_SLEEP_BEGIN_WRAPPER(millis);
   EventThreadSleep event;
 
   if (millis == 0) {
@@ -2985,7 +2985,7 @@ JVM_ENTRY(void, JVM_Sleep(JNIEnv* env, jclass threadClass, jlong millis))
         if (event.should_commit()) {
           post_thread_sleep_event(&event, millis);
         }
-        HOTSPOT_THREAD_SLEEP_END(1);
+        HOTSPOT_THREAD_SLEEP_END_WRAPPER(1);
 
         // TODO-FIXME: THROW_MSG returns which means we will not call set_state()
         // to properly restore the thread state.  That's likely wrong.
@@ -2997,7 +2997,7 @@ JVM_ENTRY(void, JVM_Sleep(JNIEnv* env, jclass threadClass, jlong millis))
   if (event.should_commit()) {
     post_thread_sleep_event(&event, millis);
   }
-  HOTSPOT_THREAD_SLEEP_END(0);
+  HOTSPOT_THREAD_SLEEP_END_WRAPPER(0);
 JVM_END
 
 JVM_ENTRY(jobject, JVM_CurrentThread(JNIEnv* env, jclass threadClass))

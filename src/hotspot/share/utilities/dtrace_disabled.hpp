@@ -30,7 +30,10 @@
  * on a system that doesn't support dtrace or because we're bulding a variant
  * of hotspot (like core) where we do not support dtrace
  */
-#if !defined(DTRACE_ENABLED)
+
+#if defined(DTRACE_ENABLED) && !(defined(LTTNG_ENABLED) && defined(LTTNG_UST_HAVE_SDT_INTEGRATION)) 
+#error This file should only be included when dtrace is not enabled or enabled lttng with sdt itegration
+#endif
 
 /* hotspot provider probes */
 #define HOTSPOT_CLASS_LOADED(arg0, arg1, arg2, arg3)
@@ -1089,9 +1092,5 @@
 #define HOTSPOT_JNI_GETMODULE_ENTRY_ENABLED()  0
 #define HOTSPOT_JNI_GETMODULE_RETURN(arg0)
 #define HOTSPOT_JNI_GETMODULE_RETURN_ENABLED()
-
-#else /* !defined(DTRACE_ENABLED) */
-#error This file should only be included when dtrace is not enabled
-#endif /* !defined(DTRACE_ENABLED) */
 
 #endif // SHARE_UTILITIES_DTRACE_DISABLED_HPP

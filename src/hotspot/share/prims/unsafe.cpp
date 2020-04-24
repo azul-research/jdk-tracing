@@ -919,7 +919,7 @@ static void post_thread_park_event(EventThreadPark* event, const oop obj, jlong 
 }
 
 UNSAFE_ENTRY(void, Unsafe_Park(JNIEnv *env, jobject unsafe, jboolean isAbsolute, jlong time)) {
-  HOTSPOT_THREAD_PARK_BEGIN((uintptr_t) thread->parker(), (int) isAbsolute, time);
+  HOTSPOT_THREAD_PARK_BEGIN_WRAPPER((uintptr_t) thread->parker(), (int) isAbsolute, time);
   EventThreadPark event;
 
   JavaThreadParkedState jtps(thread, time != 0);
@@ -936,7 +936,7 @@ UNSAFE_ENTRY(void, Unsafe_Park(JNIEnv *env, jobject unsafe, jboolean isAbsolute,
       }
     }
   }
-  HOTSPOT_THREAD_PARK_END((uintptr_t) thread->parker());
+  HOTSPOT_THREAD_PARK_END_WRAPPER((uintptr_t) thread->parker());
 } UNSAFE_END
 
 UNSAFE_ENTRY(void, Unsafe_Unpark(JNIEnv *env, jobject unsafe, jobject jthread)) {
@@ -960,7 +960,7 @@ UNSAFE_ENTRY(void, Unsafe_Unpark(JNIEnv *env, jobject unsafe, jobject jthread)) 
   // thread terminates before we get here the new user of this
   // Parker will get a 'spurious' unpark - which is perfectly valid.
   if (p != NULL) {
-    HOTSPOT_THREAD_UNPARK((uintptr_t) p);
+    HOTSPOT_THREAD_UNPARK_WRAPPER((uintptr_t) p);
     p->unpark();
   }
 } UNSAFE_END

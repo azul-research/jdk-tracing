@@ -225,7 +225,7 @@ void GCMemoryManager::gc_begin(bool recordGCBeginTime, bool recordPreGCUsage,
       MemoryPool* pool = MemoryService::get_memory_pool(i);
       MemoryUsage usage = pool->get_memory_usage();
       _current_gc_stat->set_before_gc_usage(i, usage);
-      HOTSPOT_MEM_POOL_GC_BEGIN(
+      HOTSPOT_MEM_POOL_GC_BEGIN_WRAPPER(
         (char *) name(), strlen(name()),
         (char *) pool->name(), strlen(pool->name()),
         usage.init_size(), usage.used(),
@@ -256,7 +256,7 @@ void GCMemoryManager::gc_end(bool recordPostGCUsage,
       MemoryPool* pool = MemoryService::get_memory_pool(i);
       MemoryUsage usage = pool->get_memory_usage();
 
-      HOTSPOT_MEM_POOL_GC_END(
+      HOTSPOT_MEM_POOL_GC_END_WRAPPER(
         (char *) name(), strlen(name()),
         (char *) pool->name(), strlen(pool->name()),
         usage.init_size(), usage.used(),

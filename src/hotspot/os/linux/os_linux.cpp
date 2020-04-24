@@ -5201,6 +5201,13 @@ jint os::init_2(void) {
     set_coredump_filter(FILE_BACKED_SHARED_BIT);
   }
 
+#if defined(LTTNG_ENABLED)
+  if (!dlopen("liblttng.so", RTLD_NOW | RTLD_GLOBAL)) {
+                  /* a problem with loading lttng.so, lttng-ust.so probably unavilable, ignore */
+           }
+
+#endif
+
   return JNI_OK;
 }
 

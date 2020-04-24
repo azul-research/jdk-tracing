@@ -85,7 +85,7 @@
     Symbol* klass_name = (method)->klass_name();                         \
     Symbol* name = (method)->name();                                     \
     Symbol* signature = (method)->signature();                           \
-    HOTSPOT_METHOD_COMPILE_BEGIN(                                        \
+    HOTSPOT_METHOD_COMPILE_BEGIN_WRAPPER(                                        \
       (char *) comp_name, strlen(comp_name),                             \
       (char *) klass_name->bytes(), klass_name->utf8_length(),           \
       (char *) name->bytes(), name->utf8_length(),                       \
@@ -97,7 +97,7 @@
     Symbol* klass_name = (method)->klass_name();                         \
     Symbol* name = (method)->name();                                     \
     Symbol* signature = (method)->signature();                           \
-    HOTSPOT_METHOD_COMPILE_END(                                          \
+    HOTSPOT_METHOD_COMPILE_END_WRAPPER(                                          \
       (char *) comp_name, strlen(comp_name),                             \
       (char *) klass_name->bytes(), klass_name->utf8_length(),           \
       (char *) name->bytes(), name->utf8_length(),                       \

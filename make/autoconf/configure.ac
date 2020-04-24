@@ -209,6 +209,9 @@ HOTSPOT_ENABLE_DISABLE_AOT
 HOTSPOT_ENABLE_DISABLE_CDS
 HOTSPOT_ENABLE_DISABLE_GTEST
 
+
+HOTSPOT_SETUP_LTTNG
+
 ###############################################################################
 #
 # Check dependencies for external and internal libraries.

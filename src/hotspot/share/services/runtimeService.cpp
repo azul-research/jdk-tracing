@@ -82,7 +82,7 @@ void RuntimeService::init() {
 }
 
 void RuntimeService::record_safepoint_begin(jlong app_ticks) {
-  HS_PRIVATE_SAFEPOINT_BEGIN();
+  HS_PRIVATE_SAFEPOINT_BEGIN_WRAPPER();
   if (UsePerfData) {
     _total_safepoints->inc();
     _application_time_ticks->inc(app_ticks);
@@ -96,7 +96,7 @@ void RuntimeService::record_safepoint_synchronized(jlong sync_ticks) {
 }
 
 void RuntimeService::record_safepoint_end(jlong safepoint_ticks) {
-  HS_PRIVATE_SAFEPOINT_END();
+  HS_PRIVATE_SAFEPOINT_END_WRAPPER();
   if (UsePerfData) {
     _safepoint_time_ticks->inc(safepoint_ticks);
   }
