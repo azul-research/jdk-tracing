@@ -2,7 +2,7 @@ dir="../../../"
 
 $dir/build/$2/images/jdk/bin/javac Main.java
 
-lttng create  --output=.output
+lttng create  --output=output
 
 lttng enable-event -k --userspace-probe=sdt:$dir/build/$2/images/jdk/lib/server/libjvm.so:hs_private:safepoint__begin --channel=channel1 entry
 
