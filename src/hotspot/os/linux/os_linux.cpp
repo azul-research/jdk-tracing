@@ -5202,7 +5202,21 @@ jint os::init_2(void) {
   }
 
 #if defined(LTTNG_ENABLED)
-  if (!dlopen("liblttng.so", RTLD_NOW | RTLD_GLOBAL)) {
+  char libname[] = "liblttng.so";
+  char buffer[MAXPATHLEN + strlen(libname)];
+  os::jvm_path(buffer, MAXPATHLEN + strlen(libname));
+  
+  // Found the full path to libjvm.so.
+  // Now cut the path to <java_home>/jre if we can.
+  *(strrchr(buffer, '/')) = '\0'; // Get rid of /libjvm.so.
+  char* pslash = strrchr(buffer, '/');
+  if (pslash != NULL) {
+    *(pslash + 1) = '\0';            // Get rid of {client|server|hotspot}.
+  }
+
+  strcat(buffer, libname);
+  void* lib = dlopen(buffer, RTLD_NOW | RTLD_GLOBAL);
+  if (!lib) {
     /* a problem with loading lttng.so, lttng-ust.so probably unavilable, ignore */
   }
 #endif
