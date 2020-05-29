@@ -2,7 +2,7 @@ LTTNG_SOURCE_DIR := $(TOPDIR)/src/java.base/linux/native/lttng
 
 $(eval $(call SetupNativeCompilation, LTTNG_LIBS, \
    NAME := lttng, \
-   OUTPUT_DIR := $(LIB_OUTPUTDIR), \
+   OUTPUT_DIR := $(JVM_LIB_OUTPUTDIR), \
    SRC := $(LTTNG_SOURCE_DIR), \
    CFLAGS := -I$(LTTNG_SOURCE_DIR) -fpic, \
    LDFLAGS := $(SHARED_LIBRARY_FLAGS), \
@@ -10,6 +10,7 @@ $(eval $(call SetupNativeCompilation, LTTNG_LIBS, \
    OBJECT_DIR := $(JVM_OUTPUTDIR)/objs_lttng, \
    DEFINE_THIS_FILE := false, \
 ))
+
 ifeq ($(call check-jvm-feature, lttng), true)
     TARGETS += $(LTTNG_LIBS)
 endif
